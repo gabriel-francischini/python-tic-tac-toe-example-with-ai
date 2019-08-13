@@ -21,11 +21,11 @@ def has_winner(board):
         if is_won and symbol != ' ':
             return symbol
 
-    xs = 0
+    _s = 0
     for line in board:
         for symbol in line:
-            if symbol == 'X':
-                xs += 1
+            if symbol == ' ':
+                _s += 1
 
-    if xs >= 4:
+    if _s <= 0:
         return '-'
