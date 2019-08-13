@@ -38,7 +38,7 @@ class NeuronLayer():
 
 class NeuralNetwork():
     def __init__(self, n_inputs=9, n_hidden=2,
-                 size_hidden=9, n_output=2, weights):
+                 size_hidden=9, n_output=2, weights=[]):
         copy_weights = list(tuple(weights))
 
         input_layer = []
