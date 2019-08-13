@@ -52,6 +52,14 @@ def play_game(play_func_O=get_user_input,
 
     global board
     #print(N)
+    is_O = True
+    is_X = False
+    symbol = 'O'
+
+    player_O_score = 0
+    player_X_score = 0
+
+    board = empty_board()
 
     game_counter = 0
     while True:
