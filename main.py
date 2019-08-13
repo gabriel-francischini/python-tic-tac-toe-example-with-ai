@@ -16,7 +16,7 @@ board = empty_board()
 
 
 
-def update_score(winner):
+def update_score(winner, log=False):
     global player_O_score
     global player_X_score
 
@@ -28,15 +28,14 @@ def update_score(winner):
     elif winner == 'X':
         player_X_score += 1
 
-    if winner != '-':
-        pass
-        # print("Player " + winner + " wins!")
-        # print("Current score is: X = "
-        #       + str(player_X_score)
-        #       + ", O = " + str(player_O_score) + "\n")
-    else:
-        pass
-        # print("The game draws!")
+    if log:
+        if winner != '-':
+            print("Player " + winner + " wins!")
+            print("Current score is: X = "
+                  + str(player_X_score)
+                  + ", O = " + str(player_O_score) + "\n")
+        else:
+            print("The game draws!")
 
     return winner
 
@@ -71,7 +70,7 @@ def play_game(play_func_O=get_user_input,
             is_X = not is_X
 
             # If someone wins, empty the board and show the score
-            if update_score(has_winner(board)) is not None:
+            if update_score(has_winner(board), log=should_print_board) is not None:
                 board = empty_board()
                 is_O = True
                 is_X = False
