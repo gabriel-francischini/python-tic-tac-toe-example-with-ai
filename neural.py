@@ -48,7 +48,41 @@ class NeuronNetwork():
                 input_weights.append(copy_weights.pop(0))
 
             neuron = Neuron(input_weights)
-            input_layer.append()
-        
-        
-        
+            input_layer.append(neuron)
+
+        hidden_layers = []
+        for hidden_layer in range(0, n_hidden):
+            hidden_layer = []
+            for neuron in range(0, size_hidden):
+                input_weights = []
+                for weight in range(0, len(input_layer)):
+                    input_weights.append(copy_weights.pop(0))
+
+                neuron = Neuron(input_weights)
+                hidden_layer.append(neuron)
+
+            hidden_layers.append(hidden_layer)
+
+        output_layer = []
+        for output_neuron in range(0, n_output):
+            output_weights = []
+            for weight in range(0, len(hidden_layers[-1])):
+                output_weights.append(copy_weights.pop(0))
+            neuron = Neuron(output_weights)
+            output_layer.append(neuron)
+
+        self.input_layer = input_layer
+        self.hidden_layers = hidden_layers
+        self.output_layer = output_layer
+
+
+    def evaluate(self, inputs):
+        intermediary = [neuron.evaluate(inputs) for neuron in self.input_layer]
+
+        for hidden_layer in self.hidden_layers:
+            intermediary = [neuron.evaluate(intermediary) for neuron in hidden_layer]
+
+        output = [neuron.evaluate(intermediary) for neuron in self.output_layer]
+
+        return output
+
